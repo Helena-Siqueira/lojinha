@@ -6,9 +6,9 @@ export default function Home() {
 
   // Aqui entra o Javascript normal
   // let Carrinho = 0;
-    let [ Carrinho, alteraCarrinho ] = useState(0);
-    let [ precoProduto, alteraprecoProduto] = useState(25);
-    let [ valorTotal, alteraValorTotal ] = useState(0);
+    const [ Carrinho, alteraCarrinho ] = useState(0);
+    const [ precoProduto, alteraprecoProduto] = useState(25);
+    const [ valorTotal, alteraValorTotal ] = useState(0);
 
     
     function manipulaCarrinho(){
@@ -18,7 +18,8 @@ export default function Home() {
         novoCarrinho++
         alteraValorTotal(novoCarrinho * precoProduto)
         novoCarrinho--
-    }
+        
+    } 
 
     function removeCarrinho(){
       alteraCarrinho(Carrinho - 1)
@@ -26,7 +27,7 @@ export default function Home() {
     }
       
     function limparCarrinho(){
-      alteraCarrinho(Carrinho = 0)
+      alteraCarrinho(0)
     }
 
     function aplicaCupom(){
@@ -53,7 +54,14 @@ export default function Home() {
       <hr/>
 
       <h2> Produtos </h2>
-      <button onClick={()=>limparCarrinho()} className="bg-yellow-400 text-black mt-5 p-3"> Limpar </button>
+
+      {
+        Carrinho > 0 ?
+        <button onClick={()=>limparCarrinho()} className="bg-yellow-400 text-black mt-5 p-3"> Limpar </button>
+        :
+        <div></div>
+      }
+
       <button onClick={()=>aplicaCupom()} className="bg-black text-white mt-5 p-3 m-px"> Adicionar Cupom </button>
 
       <p className="p-3 text-lg text-red-900"> 
@@ -68,9 +76,20 @@ export default function Home() {
         <p> R$ {precoProduto},00 </p>
         <button onClick={()=>manipulaCarrinho()} className="bg-lime-400 text-black mt-5 p-3"> Adicionar ao Carrinho </button>
         <br/>
-        <button onClick={()=>removeCarrinho()} className="bg-red-400 text-black mt-5 p-3"> Remover do Carrinho </button>
+        
+
+        {
+          Carrinho > 0 ?
+          <button onClick={()=>removeCarrinho()} className="bg-red-400 text-black mt-5 p-3"> Remover do Carrinho </button>
+          :
+          <div></div>
+        }
+
         
       </div>
+
+            
+            
 
     </div>
 
