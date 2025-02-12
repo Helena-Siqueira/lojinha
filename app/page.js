@@ -12,7 +12,7 @@ export default function Home() {
 
     
     function manipulaCarrinho(){
-        let novoCarrinho = Carrinho; 
+        let novoCarrinho = Carrinho;  
 
         alteraCarrinho(Carrinho + 1)
         novoCarrinho++
