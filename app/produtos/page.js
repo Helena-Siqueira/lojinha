@@ -4,8 +4,18 @@ import { use, useState } from "react";
 
 function Produtos() {
 
-    const [produto, alteraProduto] = useState({});
+    // const [produto, alteraProduto] = useState({});
 
+    const [produtos, alteraProdutos] = useState([{
+        nome: "Havaianas",
+        preco: "29,90",
+        quantidade: 2
+
+    },{
+            nome: "Sapatênis",
+            preco: "125,50",
+            quantidade: 11
+    } ]);
     
     
 
@@ -13,18 +23,18 @@ function Produtos() {
     const [preco, alteraPreco] = useState("");
     const [quantidade, alteraQuantidade] = useState("");
 
-    const [mostraListagem, alteraMostraListagem] = useState(false);
+    const [mostraListagem, alteraMostraListagem] = useState(true);
     const [mostraCadastro, alteraMostraCadastro] = useState(true);
 
     function alteraExibição(tela){
 
         if(tela == "cadastro" ){
             alteraMostraCadastro(true);
-            alteraMostraListagem(false);
+            alteraMostraListagem(true);
         }
 
         if(tela == "listagem" ){
-            alteraMostraCadastro(false);
+            alteraMostraCadastro(true);
             alteraMostraListagem(true);
         }
 
@@ -41,7 +51,7 @@ function Produtos() {
 
         } 
 
-        alteraProduto(objeto)
+        alteraProdutos([...produtos, objeto])
 
         // console.log(nome)
         // console.log(preco)
@@ -113,9 +123,13 @@ function Produtos() {
                         <h2 className="font-bold mb-5"> Listagem de produtos </h2>
 
                         <ul>
-                            <li> {produto.nome} - R$ {produto.preco} - {produto.quantidade} itens </li>
-                            <li> {produto.nome} - R$ {produto.preco} - {produto.quantidade} itens </li>
-                            <li> {produto.nome} - R$ {produto.preco} - {produto.quantidade} itens </li>
+                            {produtos.map((i)=>
+                            
+                                <li> {i.nome} - R$ {i.preco} - {i.quantidade} itens </li>   
+                            
+                            )
+                            }
+
                         </ul>
 
                     </div>

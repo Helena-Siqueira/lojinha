@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { use, useState } from "react";
 
 export default function Home() {
 
@@ -10,6 +10,9 @@ export default function Home() {
     const [ precoProduto, alteraprecoProduto] = useState(25);
     const [ valorTotal, alteraValorTotal ] = useState(0);
 
+    const [tamanhos, alteraTamanho ] = useState( ["P", "M", "G"] );
+    const [cores, alteraCores] = useState(["Preto", "Amarelo", "AZul"]);
+    const [entregas, alteraEntrega] = useState(["PAC", "Sedex", "Retirada"])
     
     function manipulaCarrinho(){
         let novoCarrinho = Carrinho;  
@@ -73,6 +76,19 @@ export default function Home() {
       <div className="border bg-sky-700 w-fit p-2 text-center text-white">
         <img src="https://placehold.co/200"/>
         <h3 className="text-lg text-lime-200 font-bold"> Produto Modelo </h3>
+
+
+       
+        <p>Tamanhos: { tamanhos.map((i)=> <span>{i}, </span> )} </p> 
+
+        <p>Cores:</p>
+        <ul>
+          {cores.map((i)=> <li className="border"> {i} </li> )}
+        </ul>
+        
+        <p>Entrega:</p>
+        { entregas.map((i)=> <span className="bg-gray-200 m-2 p-2 text-black">{i}</span> )}
+       
         <p> R$ {precoProduto},00 </p>
         <button onClick={()=>manipulaCarrinho()} className="bg-lime-400 text-black mt-5 p-3"> Adicionar ao Carrinho </button>
         <br/>
