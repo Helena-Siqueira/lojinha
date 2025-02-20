@@ -1,9 +1,33 @@
 'use client'
 
-import { useState } from "react";
+import { use, useState } from "react";
 
 function Login() {
+
+    const [usuario, alterausuario] = useState ({})
+
+    const [senha, alterasenha] = useState ("")
+    const [email, alteraemail] = useState ("")
+
+
     const [ admin, alteraAdmin ] = useState(false)
+
+
+    function logar(){
+
+        const usuario = {
+            id: 3,
+            email: "conradito",
+            senha: "123"
+        }
+        
+        if(email == usuario.email && senha == usuario.senha)
+            console.log("Usuário encontrado!")
+            usuario.senha = ""
+            localStorage.setItem("usuario", JSON.stringify(usuario))
+    }
+
+
 
     function manipulaAdmin(){
         if( admin == true){
@@ -17,6 +41,18 @@ function Login() {
 
     return ( 
         <div className="p-5">
+
+            <p> Digite o ususário </p>
+            <inpup />
+
+            <p>Digite a senha</p>
+            <inpup onChange={(e)=> alterasenha(e.target.value)}/>
+
+            <p>Digite seu email</p>
+            <inpup onChange={(e)=> alteraemail(e.target.value)} />
+
+            <button onClick={()=> logar ()} >Logar</button>
+
             <h1 className="text-lg text-blue-500 mb-2"> Página de Login </h1>
             <p> Você está logado <strong> { admin == true ? <span> Administrador</span> : <span> Usuário </span>} </strong></p>
             <button onClick={()=>manipulaAdmin()} className={`mt-3 ${admin == true ? `bg-sky-500` : `bg-red-500`} text-white p-2`} > { admin == true ? <span> Você logou como Administrador</span> : <span> Voltar para Usuário </span>} </button>
